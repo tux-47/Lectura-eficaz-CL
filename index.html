@@ -52,12 +52,12 @@
         // --- CONSTANTS ---
         const TOTAL_TIME = 480; // 8 minutes
         const TOTAL_LIVES = 3;
-        const MAX_PLAYS = 3;
 
         const CASES = [
           {
             title: { en: "The Midnight Heist", es: "El Robo de Medianoche" },
-            imageUrl: "banco.webp",
+            // A moody, black and white photo of a grand bank building at night.
+            imageUrl: "inicio.png",
             levels: [
               {
                 id: 1,
@@ -66,7 +66,8 @@
                   type: 'image_title',
                   title: { en: "Case File: 001", es: "Expediente: 001" },
                   content: 'Chaos at the National Bank',
-                  imageUrl: "robo de banco.png"
+                  // The chaotic aftermath of a bank robbery, with an open vault door.
+                  imageUrl: "caos en el banco.png"
                 },
                 instruction: { en: "Look at the evidence and the title.", es: "Mira la evidencia y el título." },
                 question: { en: "What do you think this report will be about?", es: "¿De qué crees que tratará este informe?" },
@@ -220,12 +221,19 @@
           },
           {
             title: { en: "The Crimson Canary Caper", es: "El Caso del Canario Carmesí" },
-            imageUrl: "https://images.unsplash.com/photo-1594950393437-1520cc145c2f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            // A classic film noir scene of a microphone on a dark, empty jazz club stage.
+            imageUrl: "caso 2 imagen1.png",
             levels: [
               {
                 id: 1,
                 strategy: { en: "Predicting", es: "Predicción" },
-                evidence: { type: 'image_title', title: { en: "Case File: 002", es: "Expediente: 002" }, content: 'Silence at the Blue Note Club' },
+                evidence: { 
+                  type: 'image_title', 
+                  title: { en: "Case File: 002", es: "Expediente: 002" }, 
+                  content: 'Silence at the Blue Note Club',
+                  // The empty, silent stage of a jazz club, suggesting a performance was interrupted.
+                  imageUrl: "cantante desaparecida.png"
+                },
                 instruction: { en: "Look at the image of the empty stage.", es: "Mira la imagen del escenario vacío." },
                 question: { en: "What do you think happened here?", es: "¿Qué crees que pasó aquí?" },
                 options: [{ en: "A star performer has vanished", es: "Un artista estrella ha desaparecido" }, { en: "The club is preparing for a show", es: "El club se prepara para un espectáculo" }, { en: "The club has permanently closed", es: "El club ha cerrado permanentemente" }],
@@ -337,128 +345,10 @@
                 correctAnswerIndex: 1
               }
             ]
-          },
-          {
-            title: { en: "The Silicon Serpent Sabotage", es: "El Sabotaje de la Serpiente de Silicio" },
-            imageUrl: "https://images.unsplash.com/photo-1521737852577-68041a013da0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            levels: [
-              {
-                id: 1,
-                strategy: { en: "Predicting", es: "Predicción" },
-                evidence: { type: 'image_title', title: { en: "Case File: 003", es: "Expediente: 003" }, content: 'Project Chimera: Critical Failure' },
-                instruction: { en: "Look at the image of the smoking server room.", es: "Mira la imagen de la sala de servidores humeante." },
-                question: { en: "What is this report likely about?", es: "¿De qué tratará probablemente este informe?" },
-                options: [{ en: "A corporate party", es: "Una fiesta corporativa" }, { en: "A successful product launch", es: "Un lanzamiento de producto exitoso" }, { en: "A technical disaster or sabotage", es: "Un desastre técnico o sabotaje" }],
-                correctAnswerIndex: 2
-              },
-              {
-                id: 2,
-                strategy: { en: "Skimming", es: "Lectura Rápida (Skimming)" },
-                evidence: {
-                  type: 'text',
-                  title: { en: "Internal Corporate Memo", es: "Memo Corporativo Interno" },
-                  content: [
-                    "All Innovatech employees are to be notified of a severe security breach that occurred last night, resulting in the catastrophic failure of Project Chimera's primary servers. The incident took place mere hours before the scheduled global launch, causing irreparable data loss and what is projected to be a significant financial setback for the company. On-site security has been doubled, and all keycard access has been temporarily suspended pending a full investigation.",
-                    "The preliminary technical analysis indicates this was not a random hardware malfunction but a deliberate act of sabotage. A sophisticated virus was introduced into the network, designed to bypass our firewalls and erase the core data of Project Chimera while simultaneously overheating the server hardware. The complexity of the malware suggests the perpetrator had an intimate knowledge of our proprietary systems and security protocols.",
-                    "CEO Julian Croft has stated that the company will pursue the responsible party to the fullest extent of the law. He has authorized a complete internal audit of all personnel with high-level clearance to the Chimera project. Federal cybersecurity units have been brought in to assist local law enforcement, highlighting the severity of this corporate espionage case."
-                  ]
-                },
-                instruction: { en: "Quickly read the first sentence of each paragraph.", es: "Lee rápidamente la primera oración de cada párrafo." },
-                question: { en: "What is the general subject of this memo?", es: "¿Cuál es el tema general de este memo?" },
-                options: [{ en: "Innovatech is celebrating the successful launch of Project Chimera.", es: "Innovatech celebra el exitoso lanzamiento del Proyecto Quimera." }, { en: "The company suffered a deliberate sabotage of a major project and is now investigating.", es: "La compañía sufrió un sabotaje deliberado de un proyecto importante y ahora está investigando." }, { en: "Innovatech is implementing a new mandatory cybersecurity training for all employees.", es: "Innovatech está implementando una nueva capacitación obligatoria en ciberseguridad para todos los empleados." }],
-                correctAnswerIndex: 1
-              },
-              {
-                id: 3,
-                strategy: { en: "Scanning", es: "Búsqueda de Datos (Scanning)" },
-                evidence: {
-                  type: 'data_sheet',
-                  title: { en: "Server Room Access Log (24h)", es: "Registro de Acceso a Sala de Servidores (24h)" },
-                  content: [
-                    { "Name": "Dr. Elena Vance", "ID": "734-EV", "Department": "R&D", "Access Time": "09:15" },
-                    { "Name": "Marcus Thorne", "ID": "812-MT", "Department": "IT Security", "Access Time": "14:30" },
-                    { "Name": "Julian Croft", "ID": "001-JC", "Department": "CEO", "Access Time": "17:00" },
-                    { "Name": "Dr. Aris Thorne", "ID": "556-AT", "Department": "Ex-Partner", "Access Time": "23:58 (REVOKED)" },
-                    { "Name": "Jenna Ortega", "ID": "901-JO", "Department": "Maintenance", "Access Time": "04:00" }
-                  ]
-                },
-                instruction: { en: "Quickly find the requested information.", es: "Encuentra rápidamente la información solicitada." },
-                question: { en: "According to the log, what is Dr. Aris Thorne's department?", es: "Según el registro, ¿cuál es el departamento del Dr. Aris Thorne?" },
-                options: [{ en: "R&D", es: "I+D" }, { en: "IT Security", es: "Seguridad TI" }, { en: "Ex-Partner", es: "Ex-Socio" }],
-                correctAnswerIndex: 2
-              },
-              {
-                id: 4,
-                strategy: { en: "Contextual Guessing", es: "Adivinanza Contextual" },
-                evidence: {
-                  type: 'sms',
-                  title: { en: "Recovered Chat Log", es: "Registro de Chat Recuperado" },
-                  content: "From an engineer's chat: 'The system architecture was brilliant, but Julian Croft's hubris was its downfall. He genuinely believed his creation was flawless and ignored repeated warnings about potential backdoors. He couldn't accept that anyone but him could find a vulnerability.'"
-                },
-                instruction: { en: "Use the context to understand the highlighted word.", es: "Usa el contexto para entender la palabra resaltada." },
-                question: { en: "Based on this chat, what does 'hubris' mean?", es: "Basado en este chat, ¿qué significa 'hubris'?" },
-                options: [{ en: "Technical expertise", es: "Experiencia técnica" }, { en: "Excessive pride or arrogance", es: "Orgullo o arrogancia excesiva" }, { en: "Lack of funding", es: "Falta de financiamiento" }],
-                correctAnswerIndex: 1
-              },
-              {
-                id: 5,
-                strategy: { en: "Intensive Reading", es: "Lectura Intensiva" },
-                evidence: {
-                  type: 'legal_text',
-                  title: { en: "Non-Disclosure Agreement Clause", es: "Cláusula de Acuerdo de Confidencialidad" },
-                  content: "Upon termination of employment, the signatory is prohibited from disclosing, using, or distributing any proprietary information. They are bound by this agreement, and any violation grants the company full rights to pursue legal action against them."
-                },
-                instruction: { en: "Analyze this legal sentence carefully.", es: "Analiza esta oración legal cuidadosamente." },
-                question: { en: "In the second sentence, who does the pronoun 'they' refer to?", es: "En la segunda oración, ¿a quién se refiere el pronombre 'they' (ellos/ellas)?" },
-                options: [{ en: "The company's lawyers", es: "Los abogados de la compañía" }, { en: "The signatory (the employee who signed)", es: "El firmante (el empleado que firmó)" }, { en: "The company's board of directors", es: "La junta directiva de la compañía" }],
-                correctAnswerIndex: 1
-              },
-              {
-                id: 6,
-                strategy: { en: "Inferring", es: "Inferencia" },
-                evidence: {
-                  type: 'note',
-                  title: { en: "Deleted Email Fragment", es: "Fragmento de Email Borrado" },
-                  content: "A fragment of a deleted email sent to CEO Julian Croft was recovered: '...You can't patent an idea that was stolen from a partnership. Chimera was built on my foundation, my work. You will see what happens when you betray the architect.'"
-                },
-                instruction: { en: "Read between the lines. What does this message suggest?", es: "Lee entre líneas. ¿Qué sugiere este mensaje?" },
-                question: { en: "What is the likely motive of the saboteur?", es: "¿Cuál es el motivo probable del saboteador?" },
-                options: [{ en: "Revenge for perceived intellectual property theft.", es: "Venganza por un presunto robo de propiedad intelectual." }, { en: "A desire to be rehired by the company.", es: "Un deseo de ser recontratado por la compañía." }, { en: "A random act of industrial vandalism.", es: "Un acto aleatorio de vandalismo industrial." }],
-                correctAnswerIndex: 0
-              },
-              {
-                id: 7,
-                strategy: { en: "Extensive Reading", es: "Lectura Extensiva" },
-                evidence: {
-                  type: 'narrative',
-                  title: { en: "Tech Blog Post from 5 Years Ago", es: "Publicación de Blog de Tecnología de hace 5 años" },
-                  content: "The tech world was buzzing today with news of the messy breakup between Innovatech co-founders Julian Croft and Aris Thorne. While Croft was the charismatic face of the company, Thorne was the quiet genius, the architect behind their revolutionary code. They were a perfect team, the visionary and the builder, and their friendship was legendary. They started in a garage with nothing but a brilliant idea and a shared dream. That's what makes their split so shocking. Details are sparse, but whispers in the valley suggest a bitter dispute over the company's future direction and the ownership of their core intellectual property. Thorne has since vanished from the public eye, while Croft has led Innovatech to unprecedented heights. One can't help but feel that an important story ended that day, a story of partnership and trust that laid the foundation for an empire, only to crumble at its peak."
-                },
-                instruction: { en: "Read to understand the history and feeling of the story.", es: "Lee para entender la historia y el sentimiento del relato." },
-                question: { en: "What feeling does this blog post convey about the partnership?", es: "¿Qué sentimiento transmite esta publicación de blog sobre la asociación?" },
-                options: [{ en: "A sense of celebration for Croft's success.", es: "Un sentimiento de celebración por el éxito de Croft." }, { en: "A neutral report of business news.", es: "Un informe neutral de noticias de negocios." }, { en: "A sad reflection on a broken partnership and lost potential.", es: "Una triste reflexión sobre una asociación rota y el potencial perdido." }],
-                correctAnswerIndex: 2
-              },
-              {
-                id: 8,
-                strategy: { en: "Summarizing", es: "Resumen" },
-                evidence: {
-                  type: 'summary',
-                  title: { en: "Final Analysis", es: "Análisis Final" },
-                  content: "The servers are down, the evidence is in. File your conclusive report, Detective."
-                },
-                instruction: { en: "Review the facts and choose the best summary.", es: "Revisa los hechos y elige el mejor resumen." },
-                question: { en: "Which statement best concludes this case?", es: "¿Qué declaración concluye mejor este caso?" },
-                options: [
-                  { en: "Innovatech's server failure was caused by a random hardware malfunction, exacerbated by CEO Julian Croft's arrogant oversight of the system's security.", es: "La falla del servidor de Innovatech fue causada por un mal funcionamiento aleatorio del hardware, exacerbado por la supervisión arrogante del CEO Julian Croft sobre la seguridad del sistema." },
-                  { en: "A foreign competitor hacked into Innovatech to steal the Project Chimera data and sabotage the launch, framing an ex-employee in the process.", es: "Un competidor extranjero hackeó Innovatech para robar los datos del Proyecto Quimera y sabotear el lanzamiento, incriminando a un ex-empleado en el proceso." },
-                  { en: "The sabotage was likely an act of revenge by Dr. Aris Thorne, the brilliant but betrayed co-founder, who used his deep knowledge of the system to destroy the project he felt was stolen from him.", es: "El sabotaje fue probablemente un acto de venganza del Dr. Aris Thorne, el brillante pero traicionado cofundador, que usó su profundo conocimiento del sistema para destruir el proyecto que sentía que le fue robado." }
-                ],
-                correctAnswerIndex: 2
-              }
-            ]
           }
         ];
+        
+        const MAX_PLAYS = CASES.length;
 
         const TRANSLATIONS = {
             en: {
@@ -473,17 +363,16 @@
                 incorrect: "Incorrect!",
                 next_level: "Next Clue",
                 case_closed_win: "Case Closed!",
-                case_closed_lose: "Case Cold...",
+                case_closed_lose: "END OF THE LINE...",
                 win_message: "Congratulations, Detective! You've solved the case.",
                 lose_message_time: "Time ran out. The trail went cold.",
-                lose_message_lives: "Too many mistakes. The trail went cold.",
+                lose_message_lives: "Your badge feels heavy, a useless piece of tin. You took too many wrong turns, and now the case is a ghost, haunting the city's alleyways. The truth is buried, and you're left with nothing but the rain and the bitter taste of failure.",
                 play_again: "Next Case",
-                incorrect_first_attempt: "Incorrect. Focus, Detective. You have one more chance.",
-                try_again: "Try Again",
-                incorrect_second_attempt: "Still incorrect. The lead goes cold on this one.",
                 correct_answer_was: "The correct information was:",
                 all_cases_solved: "All Cases Solved",
-                final_message: "Excellent work, Detective. You've closed all available cases. The city is safe, for now."
+                final_message: "Excellent work, Detective. You've closed all available cases. The city is safe, for now.",
+                return_to_start: "Play Again",
+                finish_investigation: "Finish Investigation"
             },
             es: {
                 title: "Archivos de Detective",
@@ -497,17 +386,16 @@
                 incorrect: "¡Incorrecto!",
                 next_level: "Siguiente Pista",
                 case_closed_win: "¡Caso Cerrado!",
-                case_closed_lose: "Caso sin Resolver...",
+                case_closed_lose: "FIN DEL CAMINO...",
                 win_message: "¡Felicidades, Detective! Has resuelto el caso.",
                 lose_message_time: "Se acabó el tiempo. La pista se enfrió.",
-                lose_message_lives: "Demasiados errores. La pista se enfrió.",
+                lose_message_lives: "Tu placa se siente pesada, un inútil trozo de metal. Tomaste demasiados desvíos equivocados, y ahora el caso es un fantasma que acecha los callejones de la ciudad. La verdad está enterrada, y te quedas solo con la lluvia y el amargo sabor del fracaso.",
                 play_again: "Siguiente Caso",
-                incorrect_first_attempt: "Incorrecto. Concéntrese, Detective. Tiene una oportunidad más.",
-                try_again: "Intentar de Nuevo",
-                incorrect_second_attempt: "Sigue incorrecto. Esta pista se enfría.",
                 correct_answer_was: "La información correcta era:",
                 all_cases_solved: "Todos los Casos Resueltos",
-                final_message: "Excelente trabajo, Detective. Ha cerrado todos los casos disponibles. La ciudad está a salvo, por ahora."
+                final_message: "Excelente trabajo, Detective. Ha cerrado todos los casos disponibles. La ciudad está a salvo, por ahora.",
+                return_to_start: "Jugar de Nuevo",
+                finish_investigation: "Finalizar Investigación"
             }
         };
 
@@ -544,14 +432,31 @@
             </div>
         );
 
-        const EndScreen = ({ onRestart, won, reason, translations, playCount }) => {
+        const EndScreen = ({ onNextCase, onRestartFromBeginning, won, reason, translations, playCount }) => {
             const message = won 
                 ? translations.win_message
                 : reason === 'time'
                     ? translations.lose_message_time
                     : translations.lose_message_lives;
-            
-            const showPlayAgain = playCount < MAX_PLAYS;
+
+            const isLastCase = playCount >= MAX_PLAYS;
+
+            let button = null;
+
+            if (won) {
+                const buttonText = isLastCase ? translations.finish_investigation : translations.play_again;
+                button = (
+                    <button onClick={onNextCase} className="font-display text-2xl bg-noir-paper text-noir-bg px-8 py-3 rounded-lg shadow-lg hover:bg-gray-300 transition-all duration-300 transform hover:scale-105">
+                        {buttonText}
+                    </button>
+                );
+            } else { // Lost
+                button = (
+                    <button onClick={onRestartFromBeginning} className="font-display text-2xl bg-noir-paper text-noir-bg px-8 py-3 rounded-lg shadow-lg hover:bg-gray-300 transition-all duration-300 transform hover:scale-105">
+                        {translations.return_to_start}
+                    </button>
+                );
+            }
 
             return (
                 <div className="flex flex-col items-center justify-center h-screen text-center text-noir-paper p-4">
@@ -559,19 +464,21 @@
                         {won ? translations.case_closed_win : translations.case_closed_lose}
                     </h1>
                     <p className="font-body text-xl md:text-2xl mt-4 mb-12 max-w-2xl">{message}</p>
-                    {showPlayAgain && (
-                      <button onClick={onRestart} className="font-display text-2xl bg-noir-paper text-noir-bg px-8 py-3 rounded-lg shadow-lg hover:bg-gray-300 transition-all duration-300 transform hover:scale-105">
-                          {translations.play_again}
-                      </button>
-                    )}
+                    {button}
                 </div>
             );
         };
         
-        const GameOverScreen = ({ translations }) => (
+        const GameOverScreen = ({ translations, onRestart }) => (
             <div className="flex flex-col items-center justify-center h-screen text-center text-noir-paper p-4">
                 <h1 className="font-display text-5xl md:text-7xl text-noir-accent">{translations.all_cases_solved}</h1>
-                <p className="font-body text-xl md:text-2xl mt-4 mb-12 max-w-2xl">{translations.final_message}</p>
+                <p className="font-body text-xl md:text-2xl mt-4 mb-8 max-w-2xl">{translations.final_message}</p>
+                <div className="w-full max-w-md mx-auto mb-8">
+                    <img src="final.png" alt="Fin" className="w-full h-auto" />
+                </div>
+                <button onClick={onRestart} className="font-display text-2xl bg-noir-paper text-noir-bg px-8 py-3 rounded-lg shadow-lg hover:bg-gray-300 transition-all duration-300 transform hover:scale-105">
+                    {translations.return_to_start}
+                </button>
             </div>
         );
 
@@ -662,27 +569,12 @@
             );
         };
 
-        const FeedbackModal = ({ isCorrect, onNext, translations, attempts, level, language }) => {
-            let title;
-            let buttonText;
-            let message = null;
-            let bgColor = 'bg-noir-red';
-
-            if (isCorrect) {
-                title = translations.correct;
-                buttonText = translations.next_level;
-                bgColor = 'bg-noir-green';
-            } else {
-                if (attempts < 2) { // First mistake
-                    title = translations.incorrect_first_attempt;
-                    buttonText = translations.try_again;
-                } else { // Second mistake
-                    title = translations.incorrect_second_attempt;
-                    buttonText = translations.next_level;
-                    const correctAnswerText = level.options[level.correctAnswerIndex][language];
-                    message = `${translations.correct_answer_was} "${correctAnswerText}"`;
-                }
-            }
+        const FeedbackModal = ({ isCorrect, onNext, translations, level, language }) => {
+            const title = isCorrect ? translations.correct : translations.incorrect;
+            const buttonText = translations.next_level;
+            const bgColor = isCorrect ? 'bg-noir-green' : 'bg-noir-red';
+            const correctAnswerText = level.options[level.correctAnswerIndex][language];
+            const message = isCorrect ? null : `${translations.correct_answer_was} "${correctAnswerText}"`;
 
             return (
                 <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
@@ -707,7 +599,6 @@
             const [language, setLanguage] = useState('en');
             const [lastAnswerCorrect, setLastAnswerCorrect] = useState(false);
             const [endReason, setEndReason] = useState('win');
-            const [attempts, setAttempts] = useState(0);
             const [caseIndex, setCaseIndex] = useState(0);
             const [playCount, setPlayCount] = useState(1);
 
@@ -741,8 +632,16 @@
                 setCurrentLevelIndex(0);
                 setLives(TOTAL_LIVES);
                 setTimeLeft(TOTAL_TIME);
-                setAttempts(0);
             }, [playCount]);
+
+            const handleRestartFromBeginning = useCallback(() => {
+                setPlayCount(1);
+                setCaseIndex(0);
+                setCurrentLevelIndex(0);
+                setLives(TOTAL_LIVES);
+                setTimeLeft(TOTAL_TIME);
+                setGameState('start');
+            }, []);
 
             const handleStart = () => {
                 setGameState('playing');
@@ -757,32 +656,23 @@
                 setLastAnswerCorrect(isCorrect);
                 
                 if (!isCorrect) {
-                    const newAttempts = attempts + 1;
-                    setAttempts(newAttempts);
-                    if (newAttempts >= 2) { // Second mistake, now lose a life
-                        const newLives = lives - 1;
-                        setLives(newLives);
-                        if (newLives <= 0) {
-                            setGameState('lost');
-                            setEndReason('lives');
-                            return; 
-                        }
+                    const newLives = lives - 1;
+                    setLives(newLives);
+                    if (newLives <= 0) {
+                        setGameState('lost');
+                        setEndReason('lives');
+                        return;
                     }
                 }
                 setGameState('feedback');
-            }, [currentLevelIndex, lives, attempts, currentCase]);
+            }, [currentLevelIndex, lives, currentCase]);
             
             const handleFeedbackContinue = () => {
-                if (lastAnswerCorrect || attempts >= 2) {
-                    if (currentLevelIndex + 1 >= currentCase.levels.length) {
-                        setGameState('won');
-                        setEndReason('win');
-                    } else {
-                        setCurrentLevelIndex(prev => prev + 1);
-                        setAttempts(0); 
-                        setGameState('playing');
-                    }
+                if (currentLevelIndex + 1 >= currentCase.levels.length) {
+                    setGameState('won');
+                    setEndReason('win');
                 } else {
+                    setCurrentLevelIndex(prev => prev + 1);
                     setGameState('playing');
                 }
             };
@@ -818,18 +708,17 @@
                                     isCorrect={lastAnswerCorrect} 
                                     onNext={handleFeedbackContinue}
                                     translations={translations}
-                                    attempts={attempts}
                                     level={currentLevel}
                                     language={language}
                                 />
                             </>
                         );
                     case 'won':
-                        return <EndScreen onRestart={resetGame} won={true} reason={endReason} translations={translations} playCount={playCount} />;
+                        return <EndScreen onNextCase={resetGame} onRestartFromBeginning={handleRestartFromBeginning} won={true} reason={endReason} translations={translations} playCount={playCount} />;
                     case 'lost':
-                        return <EndScreen onRestart={resetGame} won={false} reason={endReason} translations={translations} playCount={playCount} />;
+                        return <EndScreen onNextCase={resetGame} onRestartFromBeginning={handleRestartFromBeginning} won={false} reason={endReason} translations={translations} playCount={playCount} />;
                     case 'gameOver':
-                        return <GameOverScreen translations={translations} />;
+                        return <GameOverScreen translations={translations} onRestart={handleRestartFromBeginning} />;
                 }
             };
 
