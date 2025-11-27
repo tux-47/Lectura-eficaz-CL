@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detective Archives: The Midnight Heist</title>
+    <title>Detective Archives</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,13 +30,39 @@
     </script>
     <style>
       body {
-        font-family: 'Roboto', sans-serif;
         background-color: #1a1a1a;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1a1a1a; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #c6a800; 
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a08900; 
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+          background-color: #3d3d3d;
       }
     </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
 <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
     <!-- React Libraries -->
@@ -50,13 +76,65 @@
         const { useState, useEffect, useCallback, useMemo } = React;
 
         // --- CONSTANTS ---
-        const TOTAL_TIME = 480; // 8 minutes
+        const TOTAL_TIME = 480; // 8 minutes TOTAL for both cases
         const TOTAL_LIVES = 3;
+
+        const TRANSLATIONS = {
+          en: {
+              title: "Detective Archives",
+              start_button: "Start Investigation",
+              lives: "Lives",
+              time: "Time",
+              level: "Level",
+              reading_strategy: "Reading Strategy",
+              toggle_language: "Toggle Language 🇬🇧/🇪🇸",
+              correct: "Correct!",
+              incorrect: "Incorrect!",
+              next_level: "Next Clue",
+              case_closed_win: "Case Closed!",
+              case_closed_lose: "END OF THE LINE...",
+              win_message: "Congratulations, Detective! You've solved the case.",
+              lose_message_time: "Time ran out. The trail went cold.",
+              lose_message_lives: "Your badge feels heavy, a useless piece of tin. You took too many wrong turns.",
+              play_again: "Next Case",
+              correct_answer_was: "The correct information was:",
+              all_cases_solved: "All Cases Solved",
+              final_message: "Excellent work, Detective. You've closed all available cases. The city is safe, for now.",
+              return_to_start: "Play Again",
+              finish_investigation: "Finish Investigation",
+              manual_title: "Operations Manual",
+              accept_mission: "I Accept The Mission"
+          },
+          es: {
+              title: "Archivos de Detective",
+              start_button: "Iniciar Investigación",
+              lives: "Vidas",
+              time: "Tiempo",
+              level: "Nivel",
+              reading_strategy: "Estrategia de Lectura",
+              toggle_language: "Cambiar Idioma 🇬🇧/🇪🇸",
+              correct: "¡Correcto!",
+              incorrect: "¡Incorrecto!",
+              next_level: "Siguiente Pista",
+              case_closed_win: "¡Caso Cerrado!",
+              case_closed_lose: "FIN DEL CAMINO...",
+              win_message: "¡Felicidades, Detective! Has resuelto el caso.",
+              lose_message_time: "Se acabó el tiempo. La pista se enfrió.",
+              lose_message_lives: "Tu placa se siente pesada, un inútil trozo de metal. Tomaste demasiados desvíos.",
+              play_again: "Siguiente Caso",
+              correct_answer_was: "La información correcta era:",
+              all_cases_solved: "Todos los Casos Resueltos",
+              final_message: "Excelente trabajo, Detective. Ha cerrado todos los casos disponibles. La ciudad está a salvo, por ahora.",
+              return_to_start: "Jugar de Nuevo",
+              finish_investigation: "Finalizar Investigación",
+              manual_title: "Manual de Operaciones",
+              accept_mission: "Acepto la Misión"
+          }
+        };
 
         const CASES = [
           {
             title: { en: "The Midnight Heist", es: "El Robo de Medianoche" },
-            // A moody, black and white photo of a grand bank building at night.
             imageUrl: "inicio.png",
             levels: [
               {
@@ -66,7 +144,6 @@
                   type: 'image_title',
                   title: { en: "Case File: 001", es: "Expediente: 001" },
                   content: 'Chaos at the National Bank',
-                  // The chaotic aftermath of a bank robbery, with an open vault door.
                   imageUrl: "caos en el banco.png"
                 },
                 instruction: { en: "Look at the evidence and the title.", es: "Mira la evidencia y el título." },
@@ -221,7 +298,6 @@
           },
           {
             title: { en: "The Crimson Canary Caper", es: "El Caso del Canario Carmesí" },
-            // A classic film noir scene of a microphone on a dark, empty jazz club stage.
             imageUrl: "caso 2 imagen1.png",
             levels: [
               {
@@ -231,7 +307,6 @@
                   type: 'image_title', 
                   title: { en: "Case File: 002", es: "Expediente: 002" }, 
                   content: 'Silence at the Blue Note Club',
-                  // The empty, silent stage of a jazz club, suggesting a performance was interrupted.
                   imageUrl: "cantante desaparecida.png"
                 },
                 instruction: { en: "Look at the image of the empty stage.", es: "Mira la imagen del escenario vacío." },
@@ -350,56 +425,7 @@
         
         const MAX_PLAYS = CASES.length;
 
-        const TRANSLATIONS = {
-            en: {
-                title: "Detective Archives",
-                start_button: "Start Investigation",
-                lives: "Lives",
-                time: "Time",
-                level: "Level",
-                reading_strategy: "Reading Strategy",
-                toggle_language: "Toggle Language 🇬🇧/🇪🇸",
-                correct: "Correct!",
-                incorrect: "Incorrect!",
-                next_level: "Next Clue",
-                case_closed_win: "Case Closed!",
-                case_closed_lose: "END OF THE LINE...",
-                win_message: "Congratulations, Detective! You've solved the case.",
-                lose_message_time: "Time ran out. The trail went cold.",
-                lose_message_lives: "Your badge feels heavy, a useless piece of tin. You took too many wrong turns, and now the case is a ghost, haunting the city's alleyways. The truth is buried, and you're left with nothing but the rain and the bitter taste of failure.",
-                play_again: "Next Case",
-                correct_answer_was: "The correct information was:",
-                all_cases_solved: "All Cases Solved",
-                final_message: "Excellent work, Detective. You've closed all available cases. The city is safe, for now.",
-                return_to_start: "Play Again",
-                finish_investigation: "Finish Investigation"
-            },
-            es: {
-                title: "Archivos de Detective",
-                start_button: "Iniciar Investigación",
-                lives: "Vidas",
-                time: "Tiempo",
-                level: "Nivel",
-                reading_strategy: "Estrategia de Lectura",
-                toggle_language: "Cambiar Idioma 🇬🇧/🇪🇸",
-                correct: "¡Correcto!",
-                incorrect: "¡Incorrecto!",
-                next_level: "Siguiente Pista",
-                case_closed_win: "¡Caso Cerrado!",
-                case_closed_lose: "FIN DEL CAMINO...",
-                win_message: "¡Felicidades, Detective! Has resuelto el caso.",
-                lose_message_time: "Se acabó el tiempo. La pista se enfrió.",
-                lose_message_lives: "Tu placa se siente pesada, un inútil trozo de metal. Tomaste demasiados desvíos equivocados, y ahora el caso es un fantasma que acecha los callejones de la ciudad. La verdad está enterrada, y te quedas solo con la lluvia y el amargo sabor del fracaso.",
-                play_again: "Siguiente Caso",
-                correct_answer_was: "La información correcta era:",
-                all_cases_solved: "Todos los Casos Resueltos",
-                final_message: "Excelente trabajo, Detective. Ha cerrado todos los casos disponibles. La ciudad está a salvo, por ahora.",
-                return_to_start: "Jugar de Nuevo",
-                finish_investigation: "Finalizar Investigación"
-            }
-        };
-
-        // --- HELPER FUNCTIONS & COMPONENTS ---
+        // --- COMPONENTS ---
 
         const formatTime = (seconds) => {
             const minutes = Math.floor(seconds / 60);
@@ -408,7 +434,7 @@
         };
 
         const Header = ({ lives, timeLeft, language, toggleLanguage, translations }) => (
-            <header className="w-full max-w-5xl mx-auto p-4 flex justify-between items-center text-noir-paper font-display text-lg md:text-xl border-b-2 border-noir-accent/50">
+            <header className="sticky top-0 z-50 w-full bg-noir-bg/95 backdrop-blur shadow-md border-b-2 border-noir-accent/50 p-4 flex justify-between items-center text-noir-paper font-display text-lg md:text-xl">
                 <div className="flex items-center space-x-4">
                     <div>{translations.lives}: {'❤️'.repeat(lives)}<span className="text-noir-bg/50">{'❤️'.repeat(TOTAL_LIVES - lives)}</span></div>
                     <div>{translations.time}: {formatTime(timeLeft)}</div>
@@ -419,9 +445,106 @@
             </header>
         );
 
+        const InstructionScreen = ({ onStart, translations }) => {
+            return (
+                <div className="min-h-screen flex items-center justify-center p-4 md:p-8">
+                    <div className="bg-noir-paper text-noir-text max-w-4xl w-full p-8 md:p-12 shadow-2xl relative border-4 border-noir-text/80 overflow-hidden transform rotate-0 md:rotate-1">
+                        {/* Stamp Effect */}
+                        <div className="absolute top-4 right-4 border-4 border-noir-red text-noir-red p-2 font-display text-xl md:text-2xl opacity-70 transform rotate-12">
+                            CONFIDENTIAL
+                        </div>
+
+                        <div className="h-full overflow-y-auto max-h-[80vh] pr-4 custom-scrollbar">
+                            <h1 className="font-display text-4xl md:text-5xl mb-6 text-center border-b-4 border-noir-text/80 pb-4">
+                                Manual de Operaciones: <br/>Detective Archives
+                            </h1>
+
+                            <div className="font-body space-y-6 text-lg">
+                                <section>
+                                    <h2 className="font-display text-2xl mb-2 bg-noir-text text-noir-paper inline-block px-2">Misión</h2>
+                                    <p>Eres un detective de élite. Para ganar el juego ("Detective Archives"), debes resolver <span className="font-bold">DOS</span> casos criminales consecutivos.</p>
+                                </section>
+
+                                <section>
+                                    <h2 className="font-display text-2xl mb-2 bg-noir-text text-noir-paper inline-block px-2">1. Estructura del Juego (La Doble Jornada)</h2>
+                                    <p>El juego se divide en dos expedientes distintos. Al terminar el primero, el sistema te ofrece la opción de seguir con el segundo.</p>
+                                    <ul className="list-disc pl-5 mt-2 space-y-1">
+                                        <li><strong>Caso 1:</strong> The Midnight Heist (El robo al Banco Nacional).</li>
+                                        <li><strong>Caso 2:</strong> The Crimson Canary Caper (La desaparición de la cantante y el rubí).</li>
+                                    </ul>
+                                </section>
+
+                                <section>
+                                    <h2 className="font-display text-2xl mb-2 bg-noir-text text-noir-paper inline-block px-2">2. Configuración del Tablero</h2>
+                                    <ul className="list-disc pl-5 space-y-1">
+                                        <li><strong>Tiempo (Time ⏱️):</strong> Tienes 04:00 minutos para resolver cada caso.</li>
+                                        <li><strong>Vidas (Lives ❤️):</strong> Tienes 3 corazones.</li>
+                                        <li><strong>Idioma (🇬🇧/🇪🇸):</strong> Botón superior derecho. Úsalo para traducir preguntas, pero recuerda: la evidencia siempre está en inglés.</li>
+                                    </ul>
+                                </section>
+
+                                <section>
+                                    <h2 className="font-display text-2xl mb-2 bg-noir-text text-noir-paper inline-block px-2">3. Flujo de la Investigación</h2>
+                                    <div className="ml-2 border-l-2 border-noir-text/30 pl-4 mt-2">
+                                        <h3 className="font-display text-xl underline">El Primer Caso</h3>
+                                        <ol className="list-decimal pl-5 space-y-1 mt-1">
+                                            <li><strong>Inicio:</strong> Presiona "Start Investigation".</li>
+                                            <li><strong>Niveles 1-8:</strong> Debes superar las 8 pruebas de lectura (Predicting, Skimming, Scanning, etc.).
+                                                <ul className="list-disc pl-5 text-sm italic">
+                                                    <li>Si fallas y pierdes tus vidas: Game Over.</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>Cierre:</strong> Si respondes correctamente el Nivel 8, verás "Case Closed".</li>
+                                            <li><strong>Siguiente:</strong> Pulsa "Next Case" para continuar.</li>
+                                        </ol>
+                                    </div>
+                                    <div className="ml-2 border-l-2 border-noir-text/30 pl-4 mt-4">
+                                        <h3 className="font-display text-xl underline">El Segundo Caso</h3>
+                                        <p className="mt-1">Nueva escena en el "Blue Note Club". Enfrentarás 8 nuevas preguntas y una historia diferente. ¡La dificultad puede variar!</p>
+                                    </div>
+                                </section>
+
+                                <section>
+                                    <h2 className="font-display text-2xl mb-2 bg-noir-text text-noir-paper inline-block px-2">4. Instrucciones por Tipo de Nivel</h2>
+                                    <p>En ambos casos, enfrentarás la misma secuencia lógica:</p>
+                                    <ol className="list-decimal pl-5 grid md:grid-cols-2 gap-2 mt-2 text-base">
+                                        <li><strong>Predicting:</strong> Adivina el tema por la portada.</li>
+                                        <li><strong>Skimming:</strong> Lee títulos y primeras líneas.</li>
+                                        <li><strong>Scanning:</strong> Busca un dato exacto.</li>
+                                        <li><strong>Contextual Guessing:</strong> Adivina palabras por contexto.</li>
+                                        <li><strong>Intensive Reading:</strong> Analiza gramática o detalles.</li>
+                                        <li><strong>Inferring:</strong> Deduce motivos ocultos.</li>
+                                        <li><strong>Extensive Reading:</strong> Entiende la trama general.</li>
+                                        <li><strong>Summarizing:</strong> Elige el mejor resumen.</li>
+                                    </ol>
+                                </section>
+
+                                 <section>
+                                    <h2 className="font-display text-2xl mb-2 bg-noir-text text-noir-paper inline-block px-2">5. Victoria y Derrota</h2>
+                                     <ul className="list-disc pl-5 space-y-1">
+                                        <li><strong>Victoria Total:</strong> Resuelve AMBOS casos para ver la pantalla "All Cases Solved".</li>
+                                        <li><strong>Error:</strong> Pierdes 1 vida. Si pierdes las 3, el juego termina.</li>
+                                    </ul>
+                                </section>
+                            </div>
+
+                            <div className="mt-8 text-center">
+                                 <button 
+                                    onClick={onStart} 
+                                    className="font-display text-2xl bg-noir-text text-noir-paper px-8 py-3 rounded-sm shadow-lg hover:bg-noir-accent hover:text-noir-text transition-all duration-300 transform hover:scale-105 border-2 border-transparent"
+                                >
+                                    {translations.accept_mission}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
         const StartScreen = ({ onStart, translations, caseTitle, imageUrl }) => (
             <div className="flex flex-col items-center justify-center h-screen text-center text-noir-paper p-4">
-                <h1 className="font-display text-5xl md:text-7xl text-noir-accent">{translations.title}</h1>
+                <h1 className="font-display text-5xl md:text-7xl text-noir-accent mb-2">{translations.title}</h1>
                 <p className="font-display text-2xl md:text-4xl mt-2 mb-8">{caseTitle}</p>
                 <div className="w-full max-w-lg mx-auto border-4 border-noir-paper/50 mb-8 shadow-lg">
                     <img src={imageUrl} alt={caseTitle} className="w-full h-64 object-cover" />
@@ -473,7 +596,7 @@
             <div className="flex flex-col items-center justify-center h-screen text-center text-noir-paper p-4">
                 <h1 className="font-display text-5xl md:text-7xl text-noir-accent">{translations.all_cases_solved}</h1>
                 <p className="font-body text-xl md:text-2xl mt-4 mb-8 max-w-2xl">{translations.final_message}</p>
-                <div className="w-full max-w-md mx-auto mb-8">
+                <div className="w-full max-w-md mx-auto mb-8 border-4 border-noir-paper/30">
                     <img src="final.png" alt="Fin" className="w-full h-auto" />
                 </div>
                 <button onClick={onRestart} className="font-display text-2xl bg-noir-paper text-noir-bg px-8 py-3 rounded-lg shadow-lg hover:bg-gray-300 transition-all duration-300 transform hover:scale-105">
@@ -551,7 +674,7 @@
                     
                     <EvidenceRenderer evidence={level.evidence} language={language} />
 
-                    <div className="w-full bg-noir-bg/50 p-6 rounded-md mt-6">
+                    <div className="w-full bg-noir-bg/50 p-6 rounded-md mt-6 border border-noir-paper/20">
                       <h3 className="font-display text-2xl text-noir-paper mb-4 text-center">{level.question[language]}</h3>
                       <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
                           {level.options.map((option, index) => (
@@ -577,10 +700,10 @@
             const message = isCorrect ? null : `${translations.correct_answer_was} "${correctAnswerText}"`;
 
             return (
-                <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-                    <div className={`p-8 rounded-lg shadow-2xl text-center font-display ${bgColor} text-noir-paper w-full max-w-lg`}>
+                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+                    <div className={`p-8 rounded-lg shadow-2xl text-center font-display ${bgColor} text-noir-paper w-full max-w-lg border-2 border-noir-paper/50`}>
                         <h2 className="text-4xl md:text-5xl mb-4">{title}</h2>
-                        {message && <p className="font-body text-xl mb-6">{message}</p>}
+                        {message && <p className="font-body text-xl mb-6 bg-black/20 p-2 rounded">{message}</p>}
                         <button onClick={onNext} className="text-2xl bg-noir-paper text-noir-bg px-8 py-3 rounded-lg shadow-lg hover:bg-gray-300 transition-all duration-300 transform hover:scale-105">
                             {buttonText}
                         </button>
@@ -592,7 +715,8 @@
         // --- MAIN APP COMPONENT ---
 
         function App() {
-            const [gameState, setGameState] = useState('start');
+            // 'manual' is the new initial state for showing instructions
+            const [gameState, setGameState] = useState('manual');
             const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
             const [lives, setLives] = useState(TOTAL_LIVES);
             const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
@@ -631,7 +755,7 @@
                 setGameState('start');
                 setCurrentLevelIndex(0);
                 setLives(TOTAL_LIVES);
-                setTimeLeft(TOTAL_TIME);
+                // NOTE: We do NOT reset timeLeft here. It is shared across cases.
             }, [playCount]);
 
             const handleRestartFromBeginning = useCallback(() => {
@@ -639,9 +763,13 @@
                 setCaseIndex(0);
                 setCurrentLevelIndex(0);
                 setLives(TOTAL_LIVES);
-                setTimeLeft(TOTAL_TIME);
-                setGameState('start');
+                setTimeLeft(TOTAL_TIME); // Only reset time when fully restarting
+                setGameState('manual'); // Go back to instructions
             }, []);
+
+            const handleInstructionAccept = () => {
+                setGameState('start');
+            };
 
             const handleStart = () => {
                 setGameState('playing');
@@ -680,6 +808,8 @@
             const renderContent = () => {
                 const currentLevel = currentCase.levels[currentLevelIndex];
                 switch (gameState) {
+                    case 'manual':
+                        return <InstructionScreen onStart={handleInstructionAccept} translations={translations} />;
                     case 'start':
                         return <StartScreen onStart={handleStart} translations={translations} caseTitle={currentCase.title[language]} imageUrl={currentCase.imageUrl} />;
                     case 'playing':
@@ -696,7 +826,7 @@
                     case 'feedback':
                         return (
                             <>
-                                <main className="flex-grow flex flex-col items-center w-full opacity-30">
+                                <main className="flex-grow flex flex-col items-center w-full opacity-30 pointer-events-none">
                                     <LevelView
                                         level={currentLevel}
                                         language={language}
@@ -743,5 +873,6 @@
         root.render(<App />);
 
     </script>
+<script type="module" src="/index.tsx"></script>
 </body>
 </html>
